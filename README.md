@@ -1,1 +1,1 @@
-#Allegro software engineer intern exercise
+# Allegro software engineer intern exercise
