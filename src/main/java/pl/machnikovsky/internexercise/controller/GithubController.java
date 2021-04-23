@@ -22,10 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.machnikovsky.internexercise.exception.GithubUserNotFoundException;
 import pl.machnikovsky.internexercise.model.RepositoryEntity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -40,7 +37,7 @@ public class GithubController {
     @GetMapping(value = "/repos/{user}")
     public ResponseEntity<Object> getAllRepos(@PathVariable("user") String user) {
         RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("https://api.github.com/users")//  USERNAME/repos
+                .rootUri("https://api.github.com/users")
                 .build();
 
         try {
@@ -61,17 +58,17 @@ public class GithubController {
     public ResponseEntity<List<RepositoryEntity>> getRepoStars(@PathVariable("user") String user) {
 
         RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("https://api.github.com/users")//  USERNAME/repos
+                .rootUri("https://api.github.com/users")
                 .build();
 
         try {
             ResponseEntity<String> recievedJson = restTemplate.getForEntity(String.format("/%s/repos", user), String.class);
             JsonObject[] jsonObjects = gson.fromJson(recievedJson.getBody(), JsonObject[].class);
 
-            int stars = 0;
-            for (JsonObject jsonObject : jsonObjects) {
-                stars += Integer.parseInt(jsonObject.get("stargazers_count").toString());
-            }
+            int stars = Arrays.stream(jsonObjects)
+                    .map(json -> Integer.parseInt(json.get("stargazers_count").toString()))
+                    .reduce(0, Integer::sum);
+
             return new ResponseEntity(stars, HttpStatus.OK);
         } catch (RestClientException e) {
             throw new GithubUserNotFoundException(user);
