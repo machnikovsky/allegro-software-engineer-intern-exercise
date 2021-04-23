@@ -1,6 +1,18 @@
 # Allegro software engineer intern exercise
 The main goal of the exercise is to make an application, that allows you to list GitHub repositories of specified users (names and stars) and to get the total number of stars of a certain user. This data is supposed to be retrieved via HTTP protocol.
 
+## Table of contents
+- [How to run application](#how-to-run-application)
+  * [JAR file](#jar-file)
+  * [Docker](#docker)
+    + [Dockerfile](#dockerfile)
+    + [Dockerhub](#dockerhub)
+- [About an application](#about-an-application)
+  * [Endpoints](#endpoints)
+  * [Exceptions](#exceptions)
+- [Technologies used](#technologies-used)
+
+
 ## How to run application 
 
 There are few ways to run that application. The first one is to just clone a repository, open it in IDE and run, so I'm not going to explain it any farther. Instead, I'll explain how to run application from generated JAR file and by Docker.
@@ -64,11 +76,21 @@ $ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
 
 ## About an application
 
+### Endpoints
 Application has two main endpoints, through which user can get certain data. They are
 
 - '/repos/{user}' - returns list of repositories of a specified in '{user}' place user. They are returned in a form of JSON with two keys: name and stars.
 - '/stars/{user}' - returns the total number of stars of a specified in '{user}' place user. They are returned in a form of a single value.
 
+### Exceptions
+
+There are three classes for handling exception. The main reason, why exception would be thrown, is providing the username that does not exist.
+
+- GithubUserNotFoundException - a class extending RuntimeException. Made for situation, where user is not found. We specify username in constructor, and specified message is created in that constructor, so we can show client exactly what happend.
+
+- GithubUserNotFoundEntity - a class we're going to wrap all the neccessary information into and return to the client.
+
+- GithubExceptionHandler - a class that tells Spring how to handle certain excaption. In this case, when GithubUserNotFoundException is thrown, ResponseEntity with GithubUserNotFoundEntity object and 404 status code is returned.
 
 ## Technologies used 
 <img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="50" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
