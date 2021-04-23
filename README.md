@@ -1,6 +1,4 @@
 # Allegro software engineer intern exercise
-
-## About exercise
 The main goal of the exercise is to make an application, that allows you to list GitHub repositories of specified users (names and stars) and to get the total number of stars of a certain user. This data is supposed to be retrieved via HTTP protocol.
 
 ## How to run application 
@@ -26,7 +24,9 @@ $ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
 
 ### Docker
 
-For this step you have to have Docker installed.
+For this option you have to have Docker installed. You can either do it by Dockerfile that is inside this repository, or download an image from Dockerhub. I will explain both options.
+
+#### Dockerfile
 
 1. Clone repository and move to the cloned directory
 ```
@@ -49,6 +49,17 @@ $ docker images
 ```
 $ docker run -d -p 8080:8080 allegro-intern-exercise:1
 ```
+
+#### Dockerhub
+
+1. Pull the image from Dockerhub.
+```
+$ docker pull machnikovsky/allegro-intern-exercise:latest
+```
+2. Run a Docker container. '-d' flag stands for detached, so if you want to see logs, just remove it. '-p' stands for port, so you specify here via which port you want to communicate with container. 8080 after semicolon is exposed port, so you can't change it, but you can change the first port and talk to container with the specified port.
+```
+$ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
+``` 
 
 
 ## About an application
