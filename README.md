@@ -10,6 +10,7 @@ The main goal of the exercise is to make an application, that allows you to list
 - [About an application](#about-an-application)
   * [Endpoints](#endpoints)
   * [Exceptions](#exceptions)
+  * [Tests](#tests)
 - [Technologies used](#technologies-used)
 
 
@@ -92,7 +93,14 @@ There are three classes for handling exception. The main reason, why exception w
 
 - GithubExceptionHandler - a class that tells Spring how to handle certain excaption. In this case, when GithubUserNotFoundException is thrown, ResponseEntity with GithubUserNotFoundEntity object and 404 status code is returned.
 
+
+### Tests
+
+There are two type of tests: Integration tests and E2E tests. They basically test, whether at certain endpoints client get correct data, and when client provides invalid username, whether correct client gets correct response. E2E tests put the whole Spring Context and run application on random port, so they take a bit longer.
+
+![tests](./images/tests.png)
+
 ## Technologies used 
-<img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="50" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
+<img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="55" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
 
 The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. There is also a React app with really simple UI, so you can test Spring API easily. There is also used Docker, so you can build your image of the application and run it in a Docker container. 
