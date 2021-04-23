@@ -68,3 +68,9 @@ Application has two main endpoints, through which user can get certain data. The
 
 - '/repos/{user}' - returns list of repositories of a specified in '{user}' place user. They are returned in a form of JSON with two keys: name and stars.
 - '/stars/{user}' - returns the total number of stars of a specified in '{user}' place user. They are returned in a form of a single value.
+
+
+## Technologies used 
+<img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="50" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
+
+The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. There is also a React app with really simple UI, so you can test Spring API easily. There is also used Docker, so you can build your image of the application and run it in a Docker container. 
