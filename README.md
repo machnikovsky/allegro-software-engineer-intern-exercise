@@ -100,7 +100,11 @@ There are two type of tests: Integration tests and E2E tests. They basically tes
 
 ![tests](./images/tests.png)
 
-## Technologies used 
-<img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="55" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
+## Technologies used <img src="./images/logos/java-logo.png" width="40" height="40"><img src="./images/logos/spring-logo.png" width="35" height="35"><img src="./images/logos/react-logo.png" width="55" height="40"><img src="./images/logos/docker-logo.png" width="45" height="35">
 
-The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. There is also a React app with really simple UI, so you can test Spring API easily. There is also used Docker, so you can build your image of the application and run it in a Docker container. 
+- **Java** - The main programming language of the project.
+- **Spring Boot** - The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. 
+- **React** - There is also a React app with really simple UI, so you can test Spring API easily. \
+- **Docker** - Both Spring and React apps can be run by Docker, seperately (by Dockerfiles) and together (by Docker Compopse), so you can build your image of the application and run it in a Docker container. 
+- **GSON** - The library I used for working with JSONs.
+- **JUnit & Mockito** - Libraries I used for test purposes.
