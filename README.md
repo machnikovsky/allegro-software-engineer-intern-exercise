@@ -185,6 +185,12 @@ There are three type of tests: Unit, Integration and E2E tests. In unit tests, I
 
 ![tests](./images/tests.png)
 
+### Frontend
+
+There is also a React application that fetches data from Spring backend and displays them. It's a simple app with form at front page, made so that client can easily provide username and pagination information.
+
+![react](./images/react_home.png)
+
 ## Technologies used 
 <img src="./images/logos/java-logo.png" width="35" height="35"><img src="./images/logos/spring-logo.png" width="28" height="28"><img src="./images/logos/react-logo.png" width="45" height="33"><img src="./images/logos/docker-logo.png" width="35" height="28">
 
@@ -194,3 +200,15 @@ There are three type of tests: Unit, Integration and E2E tests. In unit tests, I
 - **Docker** - Both Spring and React apps can be run by Docker, seperately (by Dockerfiles) and together (by Docker Compopse), so you can build your image of the application and run it in a Docker container. 
 - **GSON** - The library I used for working with JSONs.
 - **JUnit & Mockito** - Libraries I used for test purposes.
+
+## Further development ideas
+
+- There could be a lot of things to add. First thing that comes to my mind is to add a 'sort by' option with many different options, for example stars.
+- Then, there could be a database added and each get request to GitHub API would save a data to a database, so that next time we want to fetch data, we don't have to.
+- Data change, so at the end of the day, we would have to fetch data again, but we could automate that process. We could add users we want to fetch to database and configure Spring to fetch data from GitHub API, for example, every day at midnight.
+- So far, fetching works for public repositories. It is possible to fetch private repositories, but it requires GitHub credentials. There could be added an option, to provide them and get all the repositories.
+- To make use of all the data provided by GitHub API, application might provide statistics based on saved repositories, for example, the percentage of certain programming languages in all the repositories, the language/stars ratio, etc.
+
+## Note to the recruiter
+
+W pierwszej kolejności chciałbym podziękować za możliwość wzięcia udziału w tym etapie rekrutacji, pisanie tej aplikacji było dla mnie świetną okazją do poćwiczenia pracowania z zewnętrznym API i JSONami :) Starałem się też zachować dobre programistyczne praktyki i dokładnie przedstawić wszystkie możliwości uruchomenia aplikacji. Uznałem też, że będzie to dobra okazja to ugruntowania wiedzy z innych technologii (React, Docker), więc skorzystałem z nich w tym projekcie, jednak wciąż głównym punktem tego projektu jest aplikacja Springowa i mam nadzieję, że sprosta ona oczekiwaniom :)
