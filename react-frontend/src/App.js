@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Repositories from './components/Repositories';
 import Navbar from './components/Navbar';
 import Stars from './components/Stars';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
           <Route exact path="/">
             <Home />  
           </Route>
-          <Route exact path="/repos/:username">
+          <Route exact path="/repos/:username/:page/:pageSize">
             <Repositories />  
           </Route>
           <Route exact path="/stars/:username">
@@ -23,7 +24,6 @@ function App() {
         </Switch>
       </div>
     </Router>
-
   );
 }
 

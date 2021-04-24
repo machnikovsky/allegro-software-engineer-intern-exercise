@@ -34,10 +34,8 @@ public class GithubController {
     }
 
     @GetMapping(value = "/stars/{user}", produces = "application/json")
-    public ResponseEntity<Integer> getRepoStars(@PathVariable("user") String user,
-                                                @RequestParam(value = "page", defaultValue = "1") int page,
-                                                @RequestParam(value = "page_size", defaultValue = "100") int pageSize) {
-        return githubService.getRepoStars(user, page, pageSize);
+    public ResponseEntity<Integer> getRepoStars(@PathVariable("user") String user) {
+        return githubService.getRepoStars(user);
     }
 
     @GetMapping(value = "/repos/{user}/all")

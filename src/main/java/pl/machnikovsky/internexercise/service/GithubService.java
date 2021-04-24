@@ -44,13 +44,16 @@ public class GithubService {
         }
     }
 
-    public ResponseEntity<Integer> getRepoStars(String user, int page, int pageSize) {
+    public ResponseEntity<Integer> getRepoStars(String user) {
         try {
-            JsonObject[] jsonObjects = getJsonObjectsWithPagiantion(user, pageSize, page);
+            List<JsonObject[]> jsonObjects = getJsonObjects(user);
 
-            int stars = Arrays.stream(jsonObjects)
-                    .map(json -> Integer.parseInt(json.get("stargazers_count").toString()))
+            int stars = jsonObjects.stream()
+                    .map(element -> (Arrays.stream(element)
+                            .map(json -> Integer.parseInt(json.get("stargazers_count").toString()))
+                            .reduce(0, Integer::sum)))
                     .reduce(0, Integer::sum);
+
 
             return new ResponseEntity(stars, HttpStatus.OK);
         } catch (RestClientException e) {
