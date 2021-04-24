@@ -18,7 +18,10 @@ The main goal of the exercise is to make an application, that allows you to list
   * [Pagination](#pagination)
   * [Exceptions](#exceptions)
   * [Tests](#tests)
+  * [Frontend](#frontend)
 - [Technologies used](#technologies-used)
+- [Further development ideas](#further-development-ideas)
+- [Note to the recruiter](#note-to-the-recruiter)
 
 
 ## How to run 
