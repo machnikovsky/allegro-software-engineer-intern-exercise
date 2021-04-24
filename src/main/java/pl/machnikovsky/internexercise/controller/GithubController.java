@@ -1,26 +1,16 @@
 package pl.machnikovsky.internexercise.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import org.apache.coyote.Response;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ResponseStatusException;
 import pl.machnikovsky.internexercise.exception.GithubUserNotFoundException;
 import pl.machnikovsky.internexercise.model.RepositoryEntity;
+import pl.machnikovsky.internexercise.service.GithubService;
 
 import java.util.*;
 
@@ -29,50 +19,30 @@ import java.util.*;
 public class GithubController {
 
     Gson gson;
+    GithubService githubService;
 
-    public GithubController() {
+    public GithubController(GithubService githubService) {
         this.gson = new Gson();
+        this.githubService = githubService;
     }
 
     @GetMapping(value = "/repos/{user}")
-    public ResponseEntity<Object> getAllRepos(@PathVariable("user") String user) {
-        RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("https://api.github.com/users")
-                .build();
-
-        try {
-            ResponseEntity<String> recievedJson = restTemplate.getForEntity(String.format("/%s/repos", user), String.class);
-            JsonObject[] jsonObjects = gson.fromJson(recievedJson.getBody(), JsonObject[].class);
-            List<RepositoryEntity> repos = new ArrayList<>();
-            for (JsonObject jsonObject : jsonObjects) {
-                repos.add(new RepositoryEntity(jsonObject.get("name").toString().replaceAll("\"", ""),
-                        Integer.parseInt(jsonObject.get("stargazers_count").toString())));
-            }
-            return new ResponseEntity(repos, HttpStatus.OK);
-        } catch (RestClientException e) {
-            throw new GithubUserNotFoundException(user);
-        }
+    public ResponseEntity<List<RepositoryEntity>> getAllRepos(@PathVariable("user") String user,
+                                                              @RequestParam(value = "page", defaultValue = "1") int page,
+                                                              @RequestParam(value = "page_size", defaultValue = "100") int pageSize) {
+        return githubService.getAllRepos(user, page, pageSize);
     }
 
     @GetMapping(value = "/stars/{user}", produces = "application/json")
-    public ResponseEntity<List<RepositoryEntity>> getRepoStars(@PathVariable("user") String user) {
+    public ResponseEntity<Integer> getRepoStars(@PathVariable("user") String user,
+                                                @RequestParam(value = "page", defaultValue = "1") int page,
+                                                @RequestParam(value = "page_size", defaultValue = "100") int pageSize) {
+        return githubService.getRepoStars(user, page, pageSize);
+    }
 
-        RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("https://api.github.com/users")
-                .build();
-
-        try {
-            ResponseEntity<String> recievedJson = restTemplate.getForEntity(String.format("/%s/repos", user), String.class);
-            JsonObject[] jsonObjects = gson.fromJson(recievedJson.getBody(), JsonObject[].class);
-
-            int stars = Arrays.stream(jsonObjects)
-                    .map(json -> Integer.parseInt(json.get("stargazers_count").toString()))
-                    .reduce(0, Integer::sum);
-
-            return new ResponseEntity(stars, HttpStatus.OK);
-        } catch (RestClientException e) {
-            throw new GithubUserNotFoundException(user);
-        }
+    @GetMapping(value = "/repos/{user}/all")
+    public ResponseEntity<List<RepositoryEntity>> getAllReposAtOnePage(@PathVariable("user") String user) {
+        return githubService.getAllReposAtOnePage(user);
     }
 
 }
