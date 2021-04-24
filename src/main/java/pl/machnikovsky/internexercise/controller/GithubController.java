@@ -1,14 +1,8 @@
 package pl.machnikovsky.internexercise.controller;
 
-import com.google.gson.JsonObject;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
-import pl.machnikovsky.internexercise.exception.GithubUserNotFoundException;
 import pl.machnikovsky.internexercise.model.RepositoryEntity;
 import pl.machnikovsky.internexercise.service.GithubService;
 
@@ -34,8 +28,8 @@ public class GithubController {
     }
 
     @GetMapping(value = "/stars/{user}", produces = "application/json")
-    public ResponseEntity<Integer> getRepoStars(@PathVariable("user") String user) {
-        return githubService.getRepoStars(user);
+    public ResponseEntity<Integer> getUserStars(@PathVariable("user") String user) {
+        return githubService.getUserStars(user);
     }
 
     @GetMapping(value = "/repos/{user}/all")

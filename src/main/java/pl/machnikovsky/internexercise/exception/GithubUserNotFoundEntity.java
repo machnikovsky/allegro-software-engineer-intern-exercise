@@ -2,8 +2,6 @@ package pl.machnikovsky.internexercise.exception;
 
 import org.springframework.http.HttpStatus;
 
-import java.time.LocalDateTime;
-
 public class GithubUserNotFoundEntity {
 
     private final String message;

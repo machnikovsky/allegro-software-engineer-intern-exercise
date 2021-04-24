@@ -47,7 +47,7 @@ class GithubControllerIntegrationTest {
 
 
     @Test
-    void shouldReturnRepositoryStars() throws Exception {
+    void shouldReturnUserStars() throws Exception {
         String username = "machnikovsky";
         MvcResult mvcResult = mockMvc.perform(get("/stars/{username}", username))
                 .andExpect(status().is(200))
@@ -58,7 +58,7 @@ class GithubControllerIntegrationTest {
     }
 
     @Test
-    void shouldNotReturnAllStars() throws Exception {
+    void shouldNotReturnUserStars() throws Exception {
         String username = "machnikovskx";
         String message = "User with a username " + username + " not found.";
         mockMvc.perform(get("/stars/{username}", username))

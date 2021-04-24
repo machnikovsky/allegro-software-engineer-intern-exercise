@@ -6,7 +6,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import pl.machnikovsky.internexercise.exception.GithubUserNotFoundException;
@@ -44,7 +43,7 @@ public class GithubService {
         }
     }
 
-    public ResponseEntity<Integer> getRepoStars(String user) {
+    public ResponseEntity<Integer> getUserStars(String user) {
         try {
             List<JsonObject[]> jsonObjects = getJsonObjects(user);
 

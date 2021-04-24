@@ -59,7 +59,7 @@ public class GithubControllerE2ETest {
     }
 
     @Test
-    public void shouldReturnRepositoryStars() {
+    public void shouldReturnUserStars() {
         String URLprefix = "http://localhost:" + port;
         String username = "machnikovsky";
         ResponseEntity<Integer> responseEntity = testRestTemplate.exchange(
@@ -73,7 +73,7 @@ public class GithubControllerE2ETest {
     }
 
     @Test
-    void shouldNotReturnRepositoryStars() {
+    void shouldNotReturnUserStars() {
         String URLprefix = "http://localhost:" + port;
         String username = "machnikovskx";
 
