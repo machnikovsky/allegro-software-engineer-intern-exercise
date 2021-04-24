@@ -79,7 +79,7 @@ public class GithubService {
         }
     }
 
-    private List<JsonObject[]> getJsonObjects(String user) {
+    public List<JsonObject[]> getJsonObjects(String user) {
         ResponseEntity<String> recievedUserJson = restTemplate.getForEntity(String.format("/%s", user), String.class);
         JsonObject userJson = gson.fromJson(recievedUserJson.getBody(), JsonObject.class);
         int repositoryCount = userJson.get("public_repos").getAsInt();
@@ -95,7 +95,7 @@ public class GithubService {
     }
 
 
-    private JsonObject[] getJsonObjectsWithPagiantion(String user, int pageSize, int page) {
+    public JsonObject[] getJsonObjectsWithPagiantion(String user, int pageSize, int page) {
         ResponseEntity<String> entity = restTemplate.getForEntity(String
                 .format("/%s/repos?per_page=%d&page=%d", user, pageSize, page), String.class);
         return gson.fromJson(entity.getBody(), JsonObject[].class);
