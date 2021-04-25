@@ -181,6 +181,8 @@ There are three classes for handling exception. The main reason, why exception w
 
 - GithubExceptionHandler - a class that tells Spring how to handle certain excaption. In this case, when GithubUserNotFoundException is thrown, ResponseEntity with GithubUserNotFoundEntity object and 404 status code is returned.
 
+![exceptions](./images/exceptions.png)
+
 
 ### Tests
 
@@ -192,7 +194,12 @@ There are three type of tests: Unit, Integration and E2E tests. In unit tests, I
 
 There is also a React application that fetches data from Spring backend and displays them. It's a simple app with form at front page, made so that client can easily provide username and pagination information.
 
-![react](./images/react_home.png)
+
+Home page             |  Repositories list first page
+:-------------------------:|:-------------------------:
+![](./images/react/react_home.png)  |  ![](./images/react/react_repositories.png)
+Repositories list with pagination             |  User stars
+![](./images/react/react_repositories_pagination.png)  |  ![](./images/react/react_stars.png)
 
 ## Technologies used 
 <img src="./images/logos/java-logo.png" width="35" height="35"><img src="./images/logos/spring-logo.png" width="28" height="28"><img src="./images/logos/react-logo.png" width="45" height="33"><img src="./images/logos/docker-logo.png" width="35" height="28">
