@@ -1,6 +1,10 @@
 # Allegro software engineer intern exercise
 The main goal of the exercise is to make an application, that allows you to list GitHub repositories of specified users (names and stars) and to get the total number of stars of a certain user. This data is supposed to be retrieved via HTTP protocol.
 
+**Application is available live [here].**
+
+[here]: http://www.zajavva.pl/
+
 ## Table of contents
 - [How to run](#how-to-run)
   * [Whole project](#whole-project)
@@ -210,6 +214,7 @@ Repositories list with pagination             |  User stars
 - **Docker** - Both Spring and React apps can be run by Docker, seperately (by Dockerfiles) and together (by Docker Compopse), so you can build your image of the application and run it in a Docker container. 
 - **GSON** - The library I used for working with JSONs.
 - **JUnit & Mockito** - Libraries I used for test purposes.
+- **NginX** - Application is hosted on VPS and uses NginX as a server.
 
 ## Further development ideas
 
