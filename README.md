@@ -62,7 +62,7 @@ $ cd ./allegro-software-engineer-intern-exercise
 ```
 $ mvn install
 ```
-3. Run JAR file. Make sure second step succeeded and make sure you have JDK installed and added to the PATH.
+3. Run JAR file. Make sure second step succeeded that you have JDK installed and added to the PATH.
 ```
 $ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
 ```
