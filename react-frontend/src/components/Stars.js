@@ -17,13 +17,20 @@ const Stars = () => {
             method: 'GET'
         })
         .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            throw Error('User with that name does not exist.');
+            return res.json();
          })
         .then(data => {
-            setStars(data);
+            console.log(data.message);
+            if (data.message == 
+                `User with a username ${username} not found.`
+                ) {
+                    throw Error(data.message);
+                } else if (
+                    data.message == "The request per hour limit has been exceeded."
+                ) {
+                    throw Error(data.message);
+                }
+            setRepositories(data);
         })
         .catch(e => {
             setError(e.message);
@@ -34,7 +41,7 @@ const Stars = () => {
         <div className="stars">
         { error && (
             <div className="err">
-                <p>Username with that name does not exist.</p>
+                <p>{ error }</p>
                 <Link to="/">
                     Go back to home page.
                 </Link>

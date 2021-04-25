@@ -17,12 +17,18 @@ const Repositories = () => {
             method: 'GET'
         })
         .then(res => {
-            if (res.ok) {
                 return res.json();
-            }
-            throw Error('User with that name does not exist.');
          })
         .then(data => {
+            if (data.message == 
+                `User with a username ${username} not found.`
+                ) {
+                    throw Error(data.message);
+                } else if (
+                    data.message == "The request per hour limit has been exceeded."
+                ) {
+                    throw Error(data.message);
+                }
             setRepositories(data);
         })
         .catch(e => {
@@ -38,7 +44,7 @@ const Repositories = () => {
             </div>
             { error && (
                 <div className="err">
-                    <p>Username with that name does not exist.</p>
+                    <p>{ error }</p>
                     <Link to="/">
                         Go back to home page.
                     </Link>
