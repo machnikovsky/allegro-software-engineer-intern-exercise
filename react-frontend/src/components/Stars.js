@@ -30,7 +30,7 @@ const Stars = () => {
                 ) {
                     throw Error(data.message);
                 }
-            setRepositories(data);
+                setStars(data);
         })
         .catch(e => {
             setError(e.message);
