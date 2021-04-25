@@ -69,7 +69,7 @@ In case request where request limit has been exceeded, add a flag to skip tests,
 
 3. Run JAR file. Make sure second step succeeded and that you have JDK installed and added to the PATH.
 ```
-$ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
+$ java -jar ./target/internexercise-0.0.1-SNAPSHOT.jar
 ```
 
 
