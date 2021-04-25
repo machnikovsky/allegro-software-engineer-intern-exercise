@@ -42,8 +42,8 @@ const Stars = () => {
         )}
         { stars && (
             <div className="star">
-                <p>GitHub user: { username }</p>
-                <p>Stars: { stars }</p>
+                <p>{ username }</p>
+                <p>⭐{ stars }</p>
             </div>   
         )}
         </div> 

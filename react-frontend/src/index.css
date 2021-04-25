@@ -64,6 +64,15 @@ hr {
   width: 400px;
 }
 
+.star {
+  background-color: rgba(226, 219, 204, 0.452);
+  border-radius: 4%;
+  margin: auto;
+  padding: 30px;
+  width: 300px;
+  font-weight: 600;
+}
+
 
 .home input {
   height:20px;
