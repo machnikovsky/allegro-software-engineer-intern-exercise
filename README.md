@@ -7,13 +7,13 @@ The main goal of the exercise is to make an application, that allows you to list
 
 ## Table of contents
 - [How to run](#how-to-run)
-  * [`Whole project`](#-whole-project-)
+  * [Whole project](#-whole-project-)
     + [- Docker Compose](#--docker-compose)
-  * [`Spring Boot application`](#-spring-boot-application-)
+  * [Spring Boot application](#-spring-boot-application-)
     + [- JAR file](#--jar-file)
     + [- Dockerfile](#--dockerfile)
     + [- Dockerhub](#--dockerhub)
-  * [`React application`](#-react-application-)
+  * [React application](#-react-application-)
     + [- NPM](#--npm)
     + [- Dockerfile](#--dockerfile-1)
     + [- Dockerhub](#--dockerhub-1)
@@ -28,13 +28,13 @@ The main goal of the exercise is to make an application, that allows you to list
 - [Note to the recruiter](#note-to-the-recruiter)
 
 
-## How to run 
+# How to run 
 
 The whole project consists of Spring backend and React frontend. They can be run separately and together, so I will cover all the scenarios.
 
-### `Whole project`
+## `Whole project`
 
-#### - Docker Compose
+### - Docker Compose
 
 **For this option, make sure you have Docker installed.**
 
@@ -51,9 +51,9 @@ In case request limit has been exceeded, add a flag to skip tests, so last comma
 $ docker-compose up
 ``` 
 
-### `Spring Boot application`
+## `Spring Boot application`
 
-#### - JAR file
+### - JAR file
 
 1. Clone repository and move to the cloned directory
 ```
@@ -73,7 +73,7 @@ $ java -jar ./target/internexercise-0.0.1-SNAPSHOT.jar
 ```
 
 
-#### - Dockerfile
+### - Dockerfile
 
 **For this option, make sure you have Docker installed.**
 
@@ -101,7 +101,7 @@ $ docker images
 $ docker run -d -p 8080:8080 allegro-intern-exercise:1
 ```
 
-#### - Dockerhub
+### - Dockerhub
 
 **For this option, make sure you have Docker installed.**
 
@@ -114,9 +114,9 @@ $ docker pull machnikovsky/allegro-intern-exercise:latest
 $ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
 ``` 
 
-### `React application`
+## `React application`
 
-#### - NPM
+### - NPM
 
 **For this option, make sure you have Node installed.**
 
@@ -130,7 +130,7 @@ $ cd ./allegro-software-engineer-intern-exercise/react-frontend
 $ npm run start
 ```
 
-#### - Dockerfile
+### - Dockerfile
 
 **For this option, make sure you have Docker installed.**
 
@@ -153,7 +153,7 @@ $ docker run -d -p 3000:3000 allegro-react:1
 ```
 
 
-#### - Dockerhub
+### - Dockerhub
 
 **For this option, make sure you have Docker installed.**
 
@@ -167,23 +167,23 @@ $ docker run -d -p 3000:3000 machnikovsky/allegro-react:latest
 ``` 
 
 
-## About an application
+# About an application
 
-### Endpoints
+## Endpoints
 Application has three main endpoints, through which user can get certain data. They are:
 
 - **/repos/{user}** - returns list of repositories of a specified in '{user}' place user. They are returned in a form of JSON with two keys: name and stars. With no explicit specification, there will be up to 100 repositories returned. Next section will explore pagination specification.
 - **/stars/{user}** - returns the total number of stars of a specified in '{user}' place user. They are returned in a form of a single value.
 - **/repos/{user}/all** - returns a full list of repositories of a specified in '{user}' place user, no matter how many repositories he has.
 
-### Pagination
+## Pagination
 When you access GitHub API with no request parameters, you get only 30 elements. So I implemented a system that allows you to get all the repositories, both for displaying and stars counting purposes. When client doesn't provide any pagination parameters, they are default (100 elements, page #1). But client can also add additional parametrs, to specify what page with how many elements he wants to fetch. The regex is below. Client has to put page number in {page} and number of repositories per page in {per_page}:
 
 ```
 /repos/{user}?page={page}&per_page={per_page}
 ```
 
-### Exceptions
+## Exceptions
 There are four classes for handling exception. The main reason, why exception would be thrown, is providing the username that does not exist or exceeding GitHub request limit.
 
 - GithubUserNotFoundException - a class extending RuntimeException. Made for situation, where user is not found. We specify username in constructor, and specified message is created in that constructor, so we can show client exactly what happend.
@@ -197,13 +197,13 @@ There are four classes for handling exception. The main reason, why exception wo
 ![exceptions](./images/exceptions.png)
 
 
-### Tests
+## Tests
 
 There are three type of tests: Unit, Integration and E2E tests. In unit tests, I mock the data and check the functionality. Integration adn E2E tests check, whether at certain endpoints client get correct data, and when client provides invalid username, whether correct client gets correct response. E2E tests put the whole Spring Context and run application on random port, so they take a bit longer.
 
 ![tests](./images/tests.png)
 
-### Frontend
+## Frontend
 
 There is also a React application that fetches data from Spring backend and displays them. It's a simple app with form at front page, made so that client can easily provide username and pagination information.
 
@@ -214,7 +214,7 @@ Home page             |  Repositories list first page
 Repositories list with pagination             |  User stars
 ![](./images/react/react_repositories_pagination.png)  |  ![](./images/react/react_stars.png)
 
-## Technologies used 
+# Technologies used 
 <img src="./images/logos/java-logo.png" width="35" height="35"><img src="./images/logos/spring-logo.png" width="28" height="28"><img src="./images/logos/react-logo.png" width="45" height="33"><img src="./images/logos/docker-logo.png" width="35" height="28"><img src="./images/logos/nginx-logo.png" width="35" height="35">
 
 - **Java** - The main programming language of the project.
@@ -225,7 +225,7 @@ Repositories list with pagination             |  User stars
 - **JUnit & Mockito** - Libraries I used for test purposes.
 - **NginX** - Application is hosted on VPS and uses NginX as a server.
 
-## Further development ideas
+# Further development ideas
 
 - There could be a lot of things to add. First thing that comes to my mind is to add a 'sort by' option with many different options, for example stars.
 - Then, there could be a database added and each get request to GitHub API would save a data to a database, so that next time we want to fetch data, we don't have to.
@@ -233,6 +233,6 @@ Repositories list with pagination             |  User stars
 - So far, fetching works for public repositories. It is possible to fetch private repositories, but it requires GitHub credentials. There could be added an option, to provide them and get all the repositories.
 - To make use of all the data provided by GitHub API, application might provide statistics based on saved repositories, for example, the percentage of certain programming languages in all the repositories, the language/stars ratio, etc.
 
-## Note to the recruiter
+# Note to the recruiter
 
 Chciałbym odnieść się do trudności, którą napotkałem podczas wykonywania projektu. API GitHuba po 5000 requestach w ciągu godziny odrzuca dalsze zapytania na jakiś czas. Nie byłem w stanie tego obejść, więc jeżeli w momencie sprawdzania mojej pracy program nie będzie zwracał poprawnych wartości, będzie to wynikało z tego właśnie faktu. W przypadku budowania aplikacji, która do zbudowania musi przejść testy, można to ominąć dodając flagę 'mvn clean install -DskipTests'. W przypadku korzystania z aplikacji lokalnie, bądź też hostowanej, nie jestem niestety w stanie nic na to poradzić.
