@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import pl.machnikovsky.internexercise.exception.GithubUserNotFoundException;
+import pl.machnikovsky.internexercise.exception.RequestLimitExceededException;
 import pl.machnikovsky.internexercise.model.RepositoryEntity;
 
 import java.util.ArrayList;
@@ -38,8 +39,12 @@ public class GithubService {
                         Integer.parseInt(jsonObject.get("stargazers_count").toString())));
             }
             return new ResponseEntity(repos, HttpStatus.OK);
-        } catch (RestClientException e) {
-            throw new GithubUserNotFoundException(user);
+        } catch (Exception e) {
+            if (e.getMessage().contains("Not Found")) {
+                throw new GithubUserNotFoundException(user);
+            } else {
+                throw new RequestLimitExceededException();
+            }
         }
     }
 
@@ -55,8 +60,12 @@ public class GithubService {
 
 
             return new ResponseEntity(stars, HttpStatus.OK);
-        } catch (RestClientException e) {
-            throw new GithubUserNotFoundException(user);
+        } catch (Exception e) {
+            if (e.getMessage().contains("Not Found")) {
+                throw new GithubUserNotFoundException(user);
+            } else {
+                throw new RequestLimitExceededException();
+            }
         }
     }
 
@@ -73,8 +82,12 @@ public class GithubService {
                 }
             }
             return new ResponseEntity(repos, HttpStatus.OK);
-        } catch (RestClientException e) {
-            throw new GithubUserNotFoundException(user);
+        } catch (Exception e) {
+            if (e.getMessage().contains("Not Found")) {
+                throw new GithubUserNotFoundException(user);
+            } else {
+                throw new RequestLimitExceededException();
+            }
         }
     }
 

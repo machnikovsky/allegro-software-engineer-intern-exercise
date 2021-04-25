@@ -14,12 +14,25 @@ public class GithubExceptionHandler {
     @ExceptionHandler(GithubUserNotFoundException.class)
     public ResponseEntity<Object> handleGithubUserNotFoundException(GithubUserNotFoundException e) {
         HttpStatus status = HttpStatus.NOT_FOUND;
-        GithubUserNotFoundEntity githubUserNotFoundEntity = new GithubUserNotFoundEntity(
+        ExceptionResponseEntity exceptionResponseEntity = new ExceptionResponseEntity(
                 e.getMessage(),
                 status,
                 status.value()
         );
-        return new ResponseEntity<>(githubUserNotFoundEntity, status);
-
+        return new ResponseEntity<>(exceptionResponseEntity, status);
     }
+
+    @ResponseBody
+    @ExceptionHandler(RequestLimitExceededException.class)
+    public ResponseEntity<Object> requestLimitExceededException(RequestLimitExceededException e) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ExceptionResponseEntity exceptionResponseEntity = new ExceptionResponseEntity(
+                e.getMessage(),
+                status,
+                status.value()
+        );
+        return new ResponseEntity<>(exceptionResponseEntity, status);
+    }
+
+
 }

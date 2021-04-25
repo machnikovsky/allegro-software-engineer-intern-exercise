@@ -10,7 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import pl.machnikovsky.internexercise.exception.GithubUserNotFoundEntity;
+import pl.machnikovsky.internexercise.exception.ExceptionResponseEntity;
 import pl.machnikovsky.internexercise.model.RepositoryEntity;
 
 
@@ -37,7 +37,7 @@ public class GithubControllerE2ETest {
                 RepositoryEntity[].class
         );
 
-        Assertions.assertEquals(11, responseEntity.getBody().length);
+        Assertions.assertTrue(responseEntity.getBody().length >= 10);
     }
 
     @Test
@@ -45,16 +45,16 @@ public class GithubControllerE2ETest {
         String URLprefix = "http://localhost:" + port;
         String username = "machnikovskx";
 
-        ResponseEntity<GithubUserNotFoundEntity> responseEntity = testRestTemplate.exchange(
+        ResponseEntity<ExceptionResponseEntity> responseEntity = testRestTemplate.exchange(
                 URLprefix + "/repos/" + username,
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
-                GithubUserNotFoundEntity.class
+                ExceptionResponseEntity.class
         );
 
         String message = "User with a username " + username + " not found.";
 
-        Assertions.assertEquals(GithubUserNotFoundEntity.class, responseEntity.getBody().getClass());
+        Assertions.assertEquals(ExceptionResponseEntity.class, responseEntity.getBody().getClass());
         Assertions.assertEquals(message, responseEntity.getBody().getMessage());
     }
 
@@ -69,7 +69,7 @@ public class GithubControllerE2ETest {
                 Integer.class
         );
 
-        Assertions.assertEquals(2, responseEntity.getBody());
+        Assertions.assertTrue(responseEntity.getBody() >= 2);
     }
 
     @Test
@@ -77,16 +77,16 @@ public class GithubControllerE2ETest {
         String URLprefix = "http://localhost:" + port;
         String username = "machnikovskx";
 
-        ResponseEntity<GithubUserNotFoundEntity> responseEntity = testRestTemplate.exchange(
+        ResponseEntity<ExceptionResponseEntity> responseEntity = testRestTemplate.exchange(
                 URLprefix + "/stars/" + username,
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
-                GithubUserNotFoundEntity.class
+                ExceptionResponseEntity.class
         );
 
         String message = "User with a username " + username + " not found.";
 
-        Assertions.assertEquals(GithubUserNotFoundEntity.class, responseEntity.getBody().getClass());
+        Assertions.assertEquals(ExceptionResponseEntity.class, responseEntity.getBody().getClass());
         Assertions.assertEquals(message, responseEntity.getBody().getMessage());
     }
 }
