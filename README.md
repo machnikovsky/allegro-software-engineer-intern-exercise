@@ -7,16 +7,16 @@ The main goal of the exercise is to make an application, that allows you to list
 
 ## Table of contents
 - [How to run](#how-to-run)
-  * [Whole project](#whole-project)
-    + [Docker Compose](#docker-compose)
-  * [Spring Boot application](#spring-boot-application)
-    + [JAR file](#jar-file)
-    + [Dockerfile](#dockerfile)
-    + [Dockerhub](#dockerhub)
-  * [React application](#react-application)
-    + [NPM](#npm)
-    + [Dockerfile](#dockerfile-1)
-    + [Dockerhub](#dockerhub-1)
+  * [`Whole project`](#-whole-project-)
+    + [- Docker Compose](#--docker-compose)
+  * [`Spring Boot application`](#-spring-boot-application-)
+    + [- JAR file](#--jar-file)
+    + [- Dockerfile](#--dockerfile)
+    + [- Dockerhub](#--dockerhub)
+  * [`React application`](#-react-application-)
+    + [- NPM](#--npm)
+    + [- Dockerfile](#--dockerfile-1)
+    + [- Dockerhub](#--dockerhub-1)
 - [About an application](#about-an-application)
   * [Endpoints](#endpoints)
   * [Pagination](#pagination)
@@ -30,11 +30,11 @@ The main goal of the exercise is to make an application, that allows you to list
 
 ## How to run 
 
-The whole project consists of Spring Boot backend and React frontend application. They can be run separately and together, so I will cover all the scenarios.
+The whole project consists of Spring backend and React frontend. They can be run separately and together, so I will cover all the scenarios.
 
-### Whole project
+### `Whole project`
 
-#### Docker Compose
+#### - Docker Compose
 
 **For this option, make sure you have Docker installed.**
 
@@ -44,16 +44,16 @@ $ git clone https://github.com/machnikovsky/allegro-software-engineer-intern-exe
 $ cd ./allegro-software-engineer-intern-exercise
 $ mvn clean install
 ```
-In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+In case request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
 
 2. Run docker compose command. It will run both Spring and React application. Spring application will be available at port 8080, while React application will be available at port 3000.
 ```
 $ docker-compose up
 ``` 
 
-### Spring Boot application
+### `Spring Boot application`
 
-#### JAR file
+#### - JAR file
 
 1. Clone repository and move to the cloned directory
 ```
@@ -65,7 +65,7 @@ $ cd ./allegro-software-engineer-intern-exercise
 ```
 $ mvn clean install
 ```
-In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+In case request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
 
 3. Run JAR file. Make sure second step succeeded and that you have JDK installed and added to the PATH.
 ```
@@ -73,7 +73,7 @@ $ java -jar ./target/internexercise-0.0.1-SNAPSHOT.jar
 ```
 
 
-#### Dockerfile
+#### - Dockerfile
 
 **For this option, make sure you have Docker installed.**
 
@@ -86,7 +86,7 @@ $ cd ./allegro-software-engineer-intern-exercise
 ```
 $ mvn install
 ```
-In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+In case request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
 
 3. Build a Docker image. The tag name is up to you, but if you name it any different, make sure to use that name in a next step.
 ```
@@ -101,7 +101,7 @@ $ docker images
 $ docker run -d -p 8080:8080 allegro-intern-exercise:1
 ```
 
-#### Dockerhub
+#### - Dockerhub
 
 **For this option, make sure you have Docker installed.**
 
@@ -114,9 +114,9 @@ $ docker pull machnikovsky/allegro-intern-exercise:latest
 $ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
 ``` 
 
-### React application
+### `React application`
 
-#### NPM
+#### - NPM
 
 **For this option, make sure you have Node installed.**
 
@@ -130,7 +130,7 @@ $ cd ./allegro-software-engineer-intern-exercise/react-frontend
 $ npm run start
 ```
 
-#### Dockerfile
+#### - Dockerfile
 
 **For this option, make sure you have Docker installed.**
 
@@ -153,7 +153,7 @@ $ docker run -d -p 3000:3000 allegro-react:1
 ```
 
 
-#### Dockerhub
+#### - Dockerhub
 
 **For this option, make sure you have Docker installed.**
 
