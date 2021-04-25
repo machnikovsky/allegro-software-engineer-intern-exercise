@@ -38,11 +38,14 @@ The whole project consists of Spring Boot backend and React frontend application
 
 **For this option, make sure you have Docker installed.**
 
-1. Clone repository and move to the cloned directory
+1. Clone repository and move to the cloned directory. Build jar file.
 ```
 $ git clone https://github.com/machnikovsky/allegro-software-engineer-intern-exercise.git
 $ cd ./allegro-software-engineer-intern-exercise
+$ mvn clean install
 ```
+In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+
 2. Run docker compose command. It will run both Spring and React application. Spring application will be available at port 8080, while React application will be available at port 3000.
 ```
 $ docker-compose up
@@ -60,8 +63,10 @@ $ cd ./allegro-software-engineer-intern-exercise
 
 2. Generate JAR file by Maven. Make sure you have Maven downloaded and added to PATH. This will create a folder './target' and JAR file inside of it.
 ```
-$ mvn install
+$ mvn clean install
 ```
+In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+
 3. Run JAR file. Make sure second step succeeded and that you have JDK installed and added to the PATH.
 ```
 $ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
@@ -81,6 +86,8 @@ $ cd ./allegro-software-engineer-intern-exercise
 ```
 $ mvn install
 ```
+In case request where request limit has been exceeded, add a flag to skip tests, so last command would be 'mvn install -DskipTests'.
+
 3. Build a Docker image. The tag name is up to you, but if you name it any different, make sure to use that name in a next step.
 ```
 $ docker build -t allegro-intern-exercise:1 .
@@ -177,13 +184,15 @@ When you access GitHub API with no request parameters, you get only 30 elements.
 ```
 
 ### Exceptions
-There are three classes for handling exception. The main reason, why exception would be thrown, is providing the username that does not exist.
+There are four classes for handling exception. The main reason, why exception would be thrown, is providing the username that does not exist or exceeding GitHub request limit.
 
 - GithubUserNotFoundException - a class extending RuntimeException. Made for situation, where user is not found. We specify username in constructor, and specified message is created in that constructor, so we can show client exactly what happend.
 
-- GithubUserNotFoundEntity - a class we're going to wrap all the neccessary information into and return to the client.
+- GithubUserNotFoundException - a class extending RuntimeException. Made for situation, where client exceeds GitHub request limit.
 
-- GithubExceptionHandler - a class that tells Spring how to handle certain excaption. In this case, when GithubUserNotFoundException is thrown, ResponseEntity with GithubUserNotFoundEntity object and 404 status code is returned.
+- ExceptionResponseEntity - a class we're going to wrap all the neccessary information into and return to the client.
+
+- GithubExceptionHandler - a class that tells Spring how to handle certain excaption. In this case, when GithubUserNotFoundException is thrown, ResponseEntity with ExceptionResponseEntity object and 404 status code is returned.
 
 ![exceptions](./images/exceptions.png)
 
@@ -226,4 +235,4 @@ Repositories list with pagination             |  User stars
 
 ## Note to the recruiter
 
-Chciałbym odnieść się do trudności, którą napotkałem podczas wykonywania projektu. API GitHuba po 5000 requestach w ciągu godziny odrzuca dalsze zapytania na jakiś czas. Nie byłem w stanie tego obejść, więc jeżeli w momencie sprawdzania mojej pracy program nie będzie zwracał poprawnych wartości, będzie to wynikało z tego właśnie faktu. W przypadku budowania aplikacji, która do zbudowania musi przejść testy, można to ominąć dodając flagę 'mvn install -DskipTests'. W przypadku korzystania z aplikacji lokalnie, bądź też hostowanej, nie jestem niestety w stanie nic na to poradzić.
+Chciałbym odnieść się do trudności, którą napotkałem podczas wykonywania projektu. API GitHuba po 5000 requestach w ciągu godziny odrzuca dalsze zapytania na jakiś czas. Nie byłem w stanie tego obejść, więc jeżeli w momencie sprawdzania mojej pracy program nie będzie zwracał poprawnych wartości, będzie to wynikało z tego właśnie faktu. W przypadku budowania aplikacji, która do zbudowania musi przejść testy, można to ominąć dodając flagę 'mvn clean install -DskipTests'. W przypadku korzystania z aplikacji lokalnie, bądź też hostowanej, nie jestem niestety w stanie nic na to poradzić.
