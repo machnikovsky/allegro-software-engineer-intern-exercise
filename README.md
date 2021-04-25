@@ -17,12 +17,12 @@ The main goal of the exercise is to make an application, that allows you to list
     + [- NPM](#--npm)
     + [- Dockerfile](#--dockerfile-1)
     + [- Dockerhub](#--dockerhub-1)
-- [About an application](#about-an-application)
-  * [Endpoints](#endpoints)
-  * [Pagination](#pagination)
-  * [Exceptions](#exceptions)
-  * [Tests](#tests)
-  * [Frontend](#frontend)
+- [About the application](#about-the-application)
+  * [- Endpoints](#--endpoints)
+  * [- Pagination](#--pagination)
+  * [- Exceptions](#--exceptions)
+  * [- Tests](#--tests)
+  * [- Frontend](#--frontend)
 - [Technologies used](#technologies-used)
 - [Further development ideas](#further-development-ideas)
 - [Note to the recruiter](#note-to-the-recruiter)
@@ -167,23 +167,23 @@ $ docker run -d -p 3000:3000 machnikovsky/allegro-react:latest
 ``` 
 
 
-# About an application
+# About the application
 
-## Endpoints
+## - Endpoints
 Application has three main endpoints, through which user can get certain data. They are:
 
 - **/repos/{user}** - returns list of repositories of a specified in '{user}' place user. They are returned in a form of JSON with two keys: name and stars. With no explicit specification, there will be up to 100 repositories returned. Next section will explore pagination specification.
 - **/stars/{user}** - returns the total number of stars of a specified in '{user}' place user. They are returned in a form of a single value.
 - **/repos/{user}/all** - returns a full list of repositories of a specified in '{user}' place user, no matter how many repositories he has.
 
-## Pagination
+## - Pagination
 When you access GitHub API with no request parameters, you get only 30 elements. So I implemented a system that allows you to get all the repositories, both for displaying and stars counting purposes. When client doesn't provide any pagination parameters, they are default (100 elements, page #1). But client can also add additional parametrs, to specify what page with how many elements he wants to fetch. The regex is below. Client has to put page number in {page} and number of repositories per page in {per_page}:
 
 ```
 /repos/{user}?page={page}&per_page={per_page}
 ```
 
-## Exceptions
+## - Exceptions
 There are four classes for handling exception. The main reason, why exception would be thrown, is providing the username that does not exist or exceeding GitHub request limit.
 
 - GithubUserNotFoundException - a class extending RuntimeException. Made for situation, where user is not found. We specify username in constructor, and specified message is created in that constructor, so we can show client exactly what happend.
@@ -197,13 +197,13 @@ There are four classes for handling exception. The main reason, why exception wo
 ![exceptions](./images/exceptions.png)
 
 
-## Tests
+## - Tests
 
 There are three type of tests: Unit, Integration and E2E tests. In unit tests, I mock the data and check the functionality. Integration adn E2E tests check, whether at certain endpoints client get correct data, and when client provides invalid username, whether correct client gets correct response. E2E tests put the whole Spring Context and run application on random port, so they take a bit longer.
 
 ![tests](./images/tests.png)
 
-## Frontend
+## - Frontend
 
 There is also a React application that fetches data from Spring backend and displays them. It's a simple app with form at front page, made so that client can easily provide username and pagination information.
 
