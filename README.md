@@ -36,7 +36,7 @@ The whole project consists of Spring Boot backend and React frontend application
 
 #### Docker Compose
 
-**For this option, make sure you have to have Docker installed.**
+**For this option, make sure you have Docker installed.**
 
 1. Clone repository and move to the cloned directory
 ```
@@ -62,7 +62,7 @@ $ cd ./allegro-software-engineer-intern-exercise
 ```
 $ mvn install
 ```
-3. Run JAR file. Make sure second step succeeded and make sure you have JDK installed and added to the PATH.
+3. Run JAR file. Make sure second step succeeded and that you have JDK installed and added to the PATH.
 ```
 $ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
 ```
@@ -70,7 +70,7 @@ $ java -jar .\target\internexercise-0.0.1-SNAPSHOT.jar
 
 #### Dockerfile
 
-**For this option, make sure you have to have Docker installed.**
+**For this option, make sure you have Docker installed.**
 
 1. Clone repository and move to the cloned directory
 ```
@@ -96,7 +96,7 @@ $ docker run -d -p 8080:8080 allegro-intern-exercise:1
 
 #### Dockerhub
 
-**For this option, make sure you have to have Docker installed.**
+**For this option, make sure you have Docker installed.**
 
 1. Pull the image from Dockerhub.
 ```
@@ -111,7 +111,7 @@ $ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
 
 #### NPM
 
-**For this option, make sure you have to have Node installed.**
+**For this option, make sure you have Node installed.**
 
 1. Clone repository and move to the cloned directory of React application.
 ```
@@ -125,7 +125,7 @@ $ npm run start
 
 #### Dockerfile
 
-**For this option, make sure you have to have Docker installed.**
+**For this option, make sure you have Docker installed.**
 
 1. Clone repository and move to the cloned directory of React application.
 ```
@@ -148,7 +148,7 @@ $ docker run -d -p 3000:3000 allegro-react:1
 
 #### Dockerhub
 
-**For this option, make sure you have to have Docker installed.**
+**For this option, make sure you have Docker installed.**
 
 1. Pull the image from Dockerhub.
 ```
@@ -170,7 +170,7 @@ Application has three main endpoints, through which user can get certain data. T
 - **/repos/{user}/all** - returns a full list of repositories of a specified in '{user}' place user, no matter how many repositories he has.
 
 ### Pagination
-When you access GitHub API with no request parameters, you get only 30 elements. So I implemented a system that allows you to get all the repositories, both for displaying and stars counting purposes. When client doesn't provide any pagination parameters, they are default (100 elements, page #1). But client can also add additional parametrs, to specify what page with how many elements he wants to fetch. The regex below. Client has to put page number in {page} and number of repositories per page in {per_page}:
+When you access GitHub API with no request parameters, you get only 30 elements. So I implemented a system that allows you to get all the repositories, both for displaying and stars counting purposes. When client doesn't provide any pagination parameters, they are default (100 elements, page #1). But client can also add additional parametrs, to specify what page with how many elements he wants to fetch. The regex is below. Client has to put page number in {page} and number of repositories per page in {per_page}:
 
 ```
 /repos/{user}?page={page}&per_page={per_page}
@@ -211,7 +211,7 @@ Repositories list with pagination             |  User stars
 - **Java** - The main programming language of the project.
 - **Spring Boot** - The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. 
 - **React** - There is also a React app with really simple UI, so you can test Spring API easily.
-- **Docker** - Both Spring and React apps can be run by Docker, seperately (by Dockerfiles) and together (by Docker Compopse), so you can build your image of the application and run it in a Docker container. 
+- **Docker** - Both Spring and React apps can be run by Docker, seperately (by Dockerfiles) and together (by Docker Compose), so you can build your image of the application and run it in a Docker container. 
 - **GSON** - The library I used for working with JSONs.
 - **JUnit & Mockito** - Libraries I used for test purposes.
 - **NginX** - Application is hosted on VPS and uses NginX as a server.
@@ -226,4 +226,4 @@ Repositories list with pagination             |  User stars
 
 ## Note to the recruiter
 
-W pierwszej kolejności chciałbym podziękować za możliwość wzięcia udziału w tym etapie rekrutacji, pisanie tej aplikacji było dla mnie świetną okazją do poćwiczenia pracowania z zewnętrznym API i JSONami :) Starałem się też zachować dobre programistyczne praktyki i dokładnie przedstawić wszystkie możliwości uruchomenia aplikacji. Uznałem też, że będzie to dobra okazja to ugruntowania wiedzy z innych technologii (React, Docker), więc skorzystałem z nich w tym projekcie, jednak wciąż głównym punktem tego projektu jest aplikacja Springowa i mam nadzieję, że sprosta ona oczekiwaniom :)
+Chciałbym odnieść się do trudności, którą napotkałem podczas wykonywania projektu. API GitHuba po 5000 requestach w ciągu godziny odrzuca dalsze zapytania na jakiś czas. Nie byłem w stanie tego obejść, więc jeżeli w momencie sprawdzania mojej pracy program nie będzie zwracał poprawnych wartości, będzie to wynikało z tego właśnie faktu. W przypadku budowania aplikacji, która do zbudowania musi przejść testy, można to ominąć dodając flagę 'mvn install -DskipTests'. W przypadku korzystania z aplikacji lokalnie, bądź też hostowanej, nie jestem niestety w stanie nic na to poradzić.
