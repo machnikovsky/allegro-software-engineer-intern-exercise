@@ -206,7 +206,7 @@ Repositories list with pagination             |  User stars
 ![](./images/react/react_repositories_pagination.png)  |  ![](./images/react/react_stars.png)
 
 ## Technologies used 
-<img src="./images/logos/java-logo.png" width="35" height="35"><img src="./images/logos/spring-logo.png" width="28" height="28"><img src="./images/logos/react-logo.png" width="45" height="33"><img src="./images/logos/docker-logo.png" width="35" height="28">
+<img src="./images/logos/java-logo.png" width="35" height="35"><img src="./images/logos/spring-logo.png" width="28" height="28"><img src="./images/logos/react-logo.png" width="45" height="33"><img src="./images/logos/docker-logo.png" width="35" height="28"><img src="./images/logos/nginx-logo.png" width="35" height="35">
 
 - **Java** - The main programming language of the project.
 - **Spring Boot** - The backbone of the project is Spring Boot application responsible for fetching data from GitHub API and extracting only required information from recieved JSON. 
