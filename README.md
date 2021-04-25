@@ -7,13 +7,13 @@ The main goal of the exercise is to make an application, that allows you to list
 
 ## Table of contents
 - [How to run](#how-to-run)
-  * [Whole project](#-whole-project-)
+  * [Whole project](#whole-project)
     + [- Docker Compose](#--docker-compose)
-  * [Spring Boot application](#-spring-boot-application-)
+  * [Spring Boot application](#spring-boot-application)
     + [- JAR file](#--jar-file)
     + [- Dockerfile](#--dockerfile)
     + [- Dockerhub](#--dockerhub)
-  * [React application](#-react-application-)
+  * [React application](#react-application)
     + [- NPM](#--npm)
     + [- Dockerfile](#--dockerfile-1)
     + [- Dockerhub](#--dockerhub-1)
@@ -32,7 +32,7 @@ The main goal of the exercise is to make an application, that allows you to list
 
 The whole project consists of Spring backend and React frontend. They can be run separately and together, so I will cover all the scenarios.
 
-## `Whole project`
+## Whole project
 
 ### - Docker Compose
 
@@ -51,7 +51,7 @@ In case request limit has been exceeded, add a flag to skip tests, so last comma
 $ docker-compose up
 ``` 
 
-## `Spring Boot application`
+## Spring Boot application
 
 ### - JAR file
 
@@ -114,7 +114,7 @@ $ docker pull machnikovsky/allegro-intern-exercise:latest
 $ docker run -d -p 8080:8080 machnikovsky/allegro-intern-exercise:latest
 ``` 
 
-## `React application`
+## React application
 
 ### - NPM
 
