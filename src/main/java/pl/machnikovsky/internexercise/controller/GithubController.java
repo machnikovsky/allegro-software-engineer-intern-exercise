@@ -9,7 +9,7 @@ import pl.machnikovsky.internexercise.service.GithubService;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://www.zajavva.pl")
 public class GithubController {
 
     Gson gson;

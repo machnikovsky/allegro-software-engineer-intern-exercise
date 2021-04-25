@@ -12,7 +12,7 @@ const Repositories = () => {
         console.log(`/repos/${username}?page=${page}&page_size=${pageSize}`)
         const abortController = new AbortController();
 
-        fetch(`http://localhost:8080/repos/${username}?page=${page}&page_size=${pageSize}`, {
+        fetch(`http://161.35.222.71:8080/repos/${username}?page=${page}&page_size=${pageSize}`, {
             signal: abortController.signal,
             method: 'GET'
         })

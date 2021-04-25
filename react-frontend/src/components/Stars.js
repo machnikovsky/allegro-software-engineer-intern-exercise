@@ -12,7 +12,7 @@ const Stars = () => {
     useEffect(() => {
         const abortController = new AbortController();
 
-        fetch(`http://localhost:8080/stars/${username}`, {
+        fetch(`http://161.35.222.71:8080/stars/${username}`, {
             signal: abortController.signal,
             method: 'GET'
         })
